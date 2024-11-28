@@ -89,23 +89,23 @@ void Student :: average(){
 }
 
 void Student :: print(int a=-1,string fl=""){
-    ofstream file(fl);
-    if (!fl.empty()) {
-        file.open(fl);
-        if (!file.is_open()) {
-            cerr << "Error writing output file!" << endl;
-            return;
-        }
-    }
+    // ofstream file(fl);
+    // if (!fl.empty()) {
+    //     file.open(fl);
+    //     if (!file.is_open()) {
+    //         cerr << "Error writing output file!" << endl;
+    //         return;
+    //     }
+    // }
 
-    file<<left<<setw(25)<<"Öğrenci Adı"<<right<<setw(10)<<"Numara"<<right<<setw(10)<<"Ortalama"<<endl;
-    file<<string(45, '-')<<endl;
+    cout<<left<<setw(25)<<"Öğrenci Adı"<<right<<setw(10)<<"Numara"<<right<<setw(10)<<"Ortalama"<<endl;
+    cout<<string(45, '-')<<endl;
 
     int i=0;
     if(a=0){
         while(i<N){
             if(avrg[i]<50){
-                file<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
+                cout<<i<<"  "<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
             }
             i++;
         }
@@ -113,19 +113,19 @@ void Student :: print(int a=-1,string fl=""){
     if(a=1){
         while(i<N){
             if(avrg[i]>=50){
-                file<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
+                cout<<i<<"  "<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
             }
             i++;
         }  
     }
     else{
         while(i<N){
-            file<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
+            cout<<i<<"  "<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
             i++;
         }
         
     }
-    file.close();
+    //file.close();
 }
 
 int main(){
@@ -133,6 +133,6 @@ int main(){
     int a;
     student.readFromCSV("input.csv");
     student.average();
-    student.print(a,"output.txt");
+    student.print(0,"output.txt");
 
 }
