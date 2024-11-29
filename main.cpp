@@ -89,43 +89,45 @@ void Student :: average(){
 }
 
 void Student :: print(int a=-1,string fl=""){
-    // ofstream file(fl);
-    // if (!fl.empty()) {
-    //     file.open(fl);
-    //     if (!file.is_open()) {
-    //         cerr << "Error writing output file!" << endl;
-    //         return;
-    //     }
-    // }
+    ofstream file;
+    if (!fl.empty()) {
+        file.open(fl); // Open only if filename is provided
+        if (!file.is_open()) {
+            cerr << "Error writing output file!" << endl;
+            return;
+        }
+    }
 
-    cout<<left<<setw(25)<<"Öğrenci Adı"<<right<<setw(10)<<"Numara"<<right<<setw(10)<<"Ortalama"<<endl;
-    cout<<string(45, '-')<<endl;
+    ostream& output = fl.empty() ? cout : file;
+
+    output<<left<<setw(25)<<"Öğrenci Adı"<<right<<setw(10)<<"Numara"<<right<<setw(10)<<"Ortalama"<<endl;
+    output<<string(45, '-')<<endl;
 
     int i=0;
-    if(a=0){
+    if(a==0){
         while(i<N){
             if(avrg[i]<50){
-                cout<<i<<"  "<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
+                output<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
             }
             i++;
         }
     }
-    if(a=1){
+    if(a==1){
         while(i<N){
             if(avrg[i]>=50){
-                cout<<i<<"  "<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
+                output<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
             }
             i++;
         }  
     }
     else{
         while(i<N){
-            cout<<i<<"  "<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
+            output<<left<<setw(25)<<name[i]<<right<<setw(10)<<studentNo[i]<<right<<setw(10)<<avrg[i]<<endl;
             i++;
         }
         
     }
-    //file.close();
+    file.close();
 }
 
 int main(){
@@ -133,6 +135,6 @@ int main(){
     int a;
     student.readFromCSV("input.csv");
     student.average();
-    student.print(0,"output.txt");
+    student.print(1,"");
 
 }
