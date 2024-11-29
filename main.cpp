@@ -91,7 +91,7 @@ void Student :: average(){
 void Student :: print(int a=-1,string fl=""){
     ofstream file;
     if (!fl.empty()) {
-        file.open(fl); // Open only if filename is provided
+        file.open(fl); 
         if (!file.is_open()) {
             cerr << "Error writing output file!" << endl;
             return;
